@@ -66,8 +66,8 @@
 
                   <div class="form-group col-md-4">
                     <label>Confirmar</label>
-                    <input type="password" name="password"class="form-control">
-                    <?php echo form_error('password','<div class="text-danger">', '</div>')?>
+                    <input type="password" name="confirma"class="form-control">
+                    <?php echo form_error('confirma','<div class="text-danger">', '</div>')?>
                   </div>
 
                 </div>
@@ -113,7 +113,7 @@
                     </div>
 
                     <?php if (isset($usuario)): ?>
-                        <input type="hidden" name="usuairo_id" value="<?php echo $usuario->id; ?>">
+                        <input type="hidden" name="usuario_id" value="<?php echo $usuario->id; ?>">
                     <?php endif; ?>
 
 
