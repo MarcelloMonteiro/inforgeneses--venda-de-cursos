@@ -11,8 +11,9 @@
             <div class="row">
               <div class="col-12">
                 <div class="card">
-                  <div class="card-header">
+                  <div class="card-header d-block">
                     <h4><?php echo $titulo; ?></h4>
+                    <a class="btn btn-primary float-right" href="<?php echo base_url('restrita/usuarios/core')?>">Cadastrar</a>
                   </div>
                   <div class="card-body">
 
@@ -61,24 +62,24 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
                           
-                            <?php foreach ($usuarios as $usuario): ?>
-                              
-                                <td><?php echo $usuario->id; ?></td>
-                                <td><?php echo $usuario->first_name .' '.$usuario->last_name; ?></td>
-                                <td><?php echo $usuario->email; ?></td>
-                                <td><?php echo ($this->ion_auth->is_admin($usuario->id) ? 'Administrador' : 'Cliente');?></td>
-                                <td><?php echo ($usuario->active == 1 ?'<span class="badge badge-success">Ativo</span>': '<span class="badge badge-danger">Inativo</span>'); ?></td>
+                        <?php foreach ($usuarios as $usuario): ?>
+
+                          <tr>                      
+                              <td><?php echo $usuario->id; ?></td>
+                              <td><?php echo $usuario->first_name .' '.$usuario->last_name; ?></td>
+                              <td><?php echo $usuario->email; ?></td>
+                              <td><?php echo ($this->ion_auth->is_admin($usuario->id) ? 'Administrador' : 'Cliente');?></td>
+                              <td><?php echo ($usuario->active == 1 ?'<span class="badge badge-success">Ativo</span>': '<span class="badge badge-danger">Inativo</span>'); ?></td>
 
                               <td>
-                                  <a href="<?php echo base_url('restrita/usuarios/core/'.$usuario->id);?>" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                                  <a href="#" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
+                                <a href="<?php echo base_url('restrita/usuarios/core/'.$usuario->id);?>" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                                <a href="#" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
                               </td>
+                            </tr>
 
-                            <?php endforeach; ?>
+                          <?php endforeach; ?>
 
-                          </tr>
                         </tbody>
                       </table>
                     </div>
