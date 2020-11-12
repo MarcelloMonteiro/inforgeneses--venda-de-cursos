@@ -74,7 +74,7 @@
 
                               <td>
                                 <a href="<?php echo base_url('restrita/usuarios/core/'.$usuario->id);?>" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
+                                <a href="<?php echo base_url('restrita/usuarios/delete/'.$usuario->id);?>" class="btn btn-icon btn-danger delete" data-confirm="Tem certeza da exclusão?"><i class="fas fa-times"></i></a>
                               </td>
                             </tr>
 

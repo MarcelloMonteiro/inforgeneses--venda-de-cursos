@@ -232,4 +232,30 @@ class usuarios extends CI_Controller{
             }
     }
 }
+public function delete($usuario_id = NULL){
+
+    $usuario_id = (int) $usuario_id;
+
+    if(! $usuario_id || !$this->ion_auth->user($usuario_id)->row()){
+        $this->session->set_flashdata('erro', 'O usuário não foi encontrado');
+        redirect('restrita/usuarios');
+    }else{
+        //exclusão
+
+        if($this->ion_auth->is_admin($usuario_id)){
+            $this->session->set_flashdata('erro', 'Não é permitido excluir um usuário com perfil de Administrador');
+            redirect('restrita/usuarios');
+        }
+
+        if($this->ion_auth->delete_user($usuario_id)){
+            $this->session->set_flashdata('sucesso', 'Usuário excluido com sucesso!');
+        }else{
+            $this->session->set_flashdata('erro', $this->ion_auth->errors());
+        }
+
+        redirect('restrita/usuarios');
+
+    }
+
+}
 }

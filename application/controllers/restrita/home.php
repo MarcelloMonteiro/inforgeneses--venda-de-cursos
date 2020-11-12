@@ -5,11 +5,16 @@ defined('BASEPATH') OR exit('Ação Não permitida');
 class Home extends CI_Controller{
 
 
-    public function __construct()
-    {
-        parent:: __construct();
+    public function __construct(){
+        parent::__construct();
 
         //sessão
+
+        if (!$this->ion_auth->logged_in())
+        {
+          redirect('restrita/login');
+        }
+        
     }
     public function index(){
 
