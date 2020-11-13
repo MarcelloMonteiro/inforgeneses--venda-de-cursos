@@ -38,6 +38,8 @@ class Core_model extends CI_Model{
                 $this->session->set_userdata('last_id', $this->db->insert_id());
             }
 
+            $this->db->insert($tabela, $data);
+
             if($this->db->affected_rows()>0){
                 $this->session->set_flashdata('sucesso','Dados salvos com sucesso!');
             }else{
