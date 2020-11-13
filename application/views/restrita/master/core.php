@@ -43,7 +43,7 @@
                       <label for="inputState">Ativa</label>
                       <select id="inputState" name="categoria_pai_ativa" class="form-control">
                         
-                        <?php if(isset($usuario)): ?>
+                        <?php if(isset($master)): ?>
 
                           <option value="1" <?php echo ($master->categoria_pai_ativa == 1 ? 'selected': ''); ?>>Sim</option>
                           <option value="0" <?php echo ($master->categoria_pai_ativa == 0 ? 'selected': ''); ?>>Não</option>
