@@ -1,19 +1,21 @@
-<?php 
+<?php
 
-defined('BASEPATH') OR exit ('Ação nao permitida');
+defined('BASEPATH') or exit('Ação nao permitida');
 
-class Sistema extends CI_Controller{
+class Sistema extends CI_Controller
+{
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
 
-        if(!$this->ion_auth->logged_in()){
+        if (!$this->ion_auth->logged_in()) {
             redirect('restrita/login');
         }
-
     }
-    
-    public function index(){
+
+    public function index()
+    {
 
         $this->form_validation->set_rules('sistema_razao_social', 'Razão social', 'trim|required|min_length[5]|max_length[100]');
         $this->form_validation->set_rules('sistema_nome_fantasia', 'Nome fantasia', 'trim|required|min_length[5]|max_length[100]');
@@ -30,7 +32,7 @@ class Sistema extends CI_Controller{
         $this->form_validation->set_rules('sistema_estado', 'UF', 'trim|required|min_length[2]|max_length[2]');
         $this->form_validation->set_rules('sistema_produtos_destaques', 'Quantidade de curso em destaque', 'trim|required|integer');
 
-        if($this->form_validation->run()){
+        if ($this->form_validation->run()) {
 
 
             $data = elements(
@@ -50,7 +52,8 @@ class Sistema extends CI_Controller{
                     'sistema_estado',
                     'sistema_produtos_destaques',
 
-                ), $this->input->post()
+                ),
+                $this->input->post()
             );
 
 
@@ -58,31 +61,25 @@ class Sistema extends CI_Controller{
 
             $data = html_escape($data);
 
-            $this->core_model->update('sistema',$data, array('sistema_id'=> 1));
+            $this->core_model->update('sistema', $data, array('sistema_id' => 1));
             redirect('restrita/sistema');
-
-        }else{
+        } else {
 
             //erro de validação
             $data = array(
                 'titulo' => 'Informações da loja',
-    
-                'scripts'=> array(
+
+                'scripts' => array(
                     'mask/jquery.mask.min.js',
                     'mask/custom.js'
                 ),
-    
-                'sistema' => $this->core_model->get_by_id('sistema', array('sistema_id'=>1)),
+
+                'sistema' => $this->core_model->get_by_id('sistema', array('sistema_id' => 1)),
             );
-    
+
             $this->load->view('restrita/layout/header', $data);
             $this->load->view('restrita/sistema/index');
             $this->load->view('restrita/layout/footer');
-
         }
-
-
-    }     
-    
-
+    }
 }

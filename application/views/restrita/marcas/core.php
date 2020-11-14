@@ -43,7 +43,7 @@
                       <label for="inputState">Ativa</label>
                       <select id="inputState" name="marca_ativa" class="form-control">
                         
-                        <?php if(isset($usuario)): ?>
+                        <?php if(isset($marca)): ?>
 
                           <option value="1" <?php echo ($marca->marca_ativa == 1 ? 'selected': ''); ?>>Sim</option>
                           <option value="0" <?php echo ($marca->marca_ativa == 0 ? 'selected': ''); ?>>Não</option>
