@@ -182,9 +182,43 @@
                   <?php echo form_error('fotos_produtos', '<div class="text-danger">', '</div>') ?>
                 </div>
 
-
               </div>
 
+              <div class="form-row">
+                
+                <div class="col-md-12">
+
+                  <?php if(isset($produto)):?>
+
+                    <div id="uploaded_image" class="text-danger">
+                      
+                      <?php foreach ($fotos_produto as $foto): ?>
+
+                        <ul style="list-style: none; display: inline-block">
+
+                          <li>
+
+                            <img src="<?php echo base_url('uploads/cursos/'.$foto->foto_caminho);?>" width="80" class="img-thumbnail mr-1 mb-2">
+                            <input type="hidden" name="fotos_produtos[]" value="<?php echo $foto->foto_caminho; ?>">
+                            <a href="javascript:(void)" class="btn btn-danger d-block btn-icon mx-auto mb-30 btn-remove"><i class="fas fa-times"></i></a>
+
+                          </li>
+
+                        </ul>
+
+                      <?php endforeach ?>
+                    </div>  
+                  <?php else: ?> 
+
+                    <div id="uploaded" class="text-danger">
+                    
+                    </div>
+
+                  <?php endif; ?>
+
+                </div>
+
+              </div>
 
               <div class="form-row">
 
@@ -193,9 +227,7 @@
                 <?php endif; ?>
               </div>
 
-
             </div>
-
 
             <div class="card-footer">
               <button class="btn btn-primary mr-2">Salvar</button>
