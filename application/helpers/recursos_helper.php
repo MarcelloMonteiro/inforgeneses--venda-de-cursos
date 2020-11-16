@@ -2,12 +2,44 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
+
+//enviando informações dos sistema para o header e footer
 function info_header_footer(){
 
     $CI = & get_instance();
 
+    $sistema = $CI->core_model->get_by_id('sistema', array('sistema_id'=> 1));
+
+    return $sistema;
+
 }
 
+function grandes_marcas_navbar(){
+
+    $CI = & get_instance();
+
+    $grandes_marcas = $CI->loja_model->get_grandes_marcas();
+
+    return $grandes_marcas;
+}
+
+function get_categorias_pai_navbar(){
+
+    $CI = & get_instance();
+
+    $categorias_pai = $CI->loja_model->get_categorias_pai();
+    
+    return $categorias_pai;
+
+}
+
+function get_categorias_filhas_navbar($categorias_pai_id = NULL){
+    $CI = & get_instance();
+    
+    $categorias_filhas = $CI->loja_model->get_categorias_filhas($categorias_pai_id);
+
+    return $categorias_filhas;
+}
 
 function url_amigavel($string = NULL) {
     $string = remove_acentos($string);

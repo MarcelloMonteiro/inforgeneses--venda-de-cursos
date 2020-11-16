@@ -77,17 +77,21 @@
                                         </p>
                                     </div>
                                     <ul class="des">
+                                        <?php $sistema = info_header_footer(); ?>
                                         <li>
-                                            <span>Address: </span>
-                                            6688Princess Road, London, Greater London BAS 23JK, UK
+                                            <span>Endereço: </span>
+                                            <?php echo 'CEP&nbsp;' . $sistema->sistema_cep. ''. $sistema->sistema_endereco.', '. $sistema->sistema_numero ?>
+                                            <?php echo $sistema->sistema_cidade. ' - '. $sistema->sistema_estado ?>
                                         </li>
                                         <li>
-                                            <span>Phone: </span>
-                                            <a href="#">(+123) 123 321 345</a>
+                                            <span>Telefones</span>
+                                            <?php echo $sistema->sistema_telefone_fixo .' - '. $sistema->sistema_telefone_movel?>
+
                                         </li>
                                         <li>
                                             <span>Email: </span>
-                                            <a href="mailto://info@yourdomain.com">info@yourdomain.com</a>
+                                            <?php echo $sistema->sistema_email ?>
+
                                         </li>
                                     </ul>
                                 </div>
