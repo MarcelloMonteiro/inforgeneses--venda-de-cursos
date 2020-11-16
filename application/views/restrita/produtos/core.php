@@ -69,10 +69,9 @@
 
               <div class="form-row">
 
-                <div class="form-group col-md-3">
+              <div class="form-group col-md-3">
                   <label for="inputState">Categoria</label>
                   <select id="inputState" name="produto_categoria_id" class="form-control">
-
 
                     <option value="">Escolha...</option>
 
@@ -80,7 +79,7 @@
 
                       <?php if (isset($produto)) : ?>
 
-                        <option value="<?php echo $categoria->categoria_id; ?>" <?php echo ($categoria->categoria_id == $produto->produto_categoria_id ? 'selected' : '') ?>>
+                        <option value="<?php echo $categoria->categoria_id; ?>" <?php echo ($categoria->categoria_id == $categoria->produto_categoria_id ? 'selected' : '') ?>>
                           <?php echo $categoria->categoria_nome; ?></option>
 
                       <?php else : ?>
@@ -190,7 +189,7 @@
 
                   <?php if(isset($produto)):?>
 
-                    <div id="uploaded_image" class="text-danger">
+                    <div id="uploaded_data" class="text-danger">
                       
                       <?php foreach ($fotos_produto as $foto): ?>
 
