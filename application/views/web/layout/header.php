@@ -34,10 +34,12 @@
         <link rel="stylesheet" href="<?php echo base_url('public/web/css/magnific-popup.css');?>">
         <!-- Bootstrap V4.1.3 Fremwork CSS -->
         <link rel="stylesheet" href="<?php echo base_url('public/web/css/bootstrap.min.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url('public/web/css/bootstrap.min.css.map');?>">
+        
         <!-- Helper CSS -->
         <link rel="stylesheet" href="<?php echo base_url('public/web/css/helper.css');?>">
         <!-- Main Style CSS -->
-        <link rel="stylesheet" href="<?php echo base_url('public/web/style.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url('public/web/css/style.css');?>">
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="<?php echo base_url('public/web/css/responsive.css');?>">
         <!-- Modernizr js -->

@@ -2,6 +2,12 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
+function info_header_footer(){
+
+    $CI = & get_instance();
+
+}
+
 
 function url_amigavel($string = NULL) {
     $string = remove_acentos($string);
