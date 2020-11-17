@@ -53,38 +53,25 @@ class Produtos extends CI_Controller
 
                 $this->session->set_flashdata('erro', 'Esse curso não foi encontrado');
                 redirect('restrita/produtos');
-            } else {
-                //editando...
-            /**[produto_codigo] => 12345678
-    [produto_nome] => Curso CodeIgniter
-    [produto_valor] => 29.00
-    [produto_categoria_id] => 4
-    [produto_marca_id] => 1
-    [produto_ativo] => 1
-    [produto_destaque] => 1
-    [produto_descricao] => Curso CodeIgniter Curso CodeIgniter Curso CodeIgniter
-    [produto_id] => 1 */
-                //validações
 
-                $this->form_validation->set_rules('produto_nome', 'Nome do curso', 'trim|required|min_length[3]|max_length[40]|callback_valida_nome_produto');
+            } else {
+
+                $this->form_validation->set_rules('produto_nome', 'Nome do curso', 'trim|required|min_length[3]|max_length[40]|callback_valida_nome_marca');
                 $this->form_validation->set_rules('produto_valor', 'Valor do curso', 'trim|required');
-                $this->form_validation->set_rules('produto_categoria_id', 'Categoria do curso', 'trim|required');
                 $this->form_validation->set_rules('produto_marca_id', 'Escola do curso', 'trim|required');
                 $this->form_validation->set_rules('produto_descricao', 'Descrição do curso', 'trim|required');
 
 
-                if ($this->form_validation->run()) {
+                if($this->form_validation->run()) {
 
                     $data = elements(
                         array(
                             'produto_nome',
                             'produto_valor',
-                            'produto_categoria_id',
                             'produto_marca_id',
                             'produto_descricao',
                         ), $this->input->post()
                     );
-
                     //removendo virgula
                     $data['produto_valor'] = str_replace(',','',$data['produto_valor']);
 
@@ -93,7 +80,18 @@ class Produtos extends CI_Controller
 
                     $data = html_escape($data);
 
+
                     $this->core_model->update('produtos', $data, array('produto_id'=> $produto_id));
+
+                    $fotos_produtos = $this->input->post('fotos_produtos');
+                    $total_fotos = count($fotos_produtos);
+                    for($i=0; $i <$total_fotos; $i++){
+                        $data = array(
+                            'foto_produto_id' => $produto_id,
+                            'foto_caminho' => $fotos_produtos[$i],
+                        );
+                        $this->core_model->insert('produtos_fotos',$data);
+                    }
 
                     redirect('restrita/produtos');
 
@@ -115,7 +113,7 @@ class Produtos extends CI_Controller
                             'mask/custom.js'
                         ),
                         'produto' => $produto,
-                        'fotos_produto' => $this->core_model->get_all('produtos_fotos', array('foto_produto_id' => $produto_id)),
+                        'fotos_produtos' => $this->core_model->get_all('produtos_fotos', array('foto_produto_id' => $produto_id)),
                         'produtos' => $this->core_model->get_all('categorias', array('categoria_ativa' => 1)),
                         'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
                     );
@@ -130,15 +128,17 @@ class Produtos extends CI_Controller
         }
     }
 
-    public function valida_nome_produto($produto_nome){
+
+
+    public function valida_nome_marca($produto_nome){
     
-        $produto_id = (int) $this->input->post('produto_id');
+        $produto_id = $this->input->post('produto_id');
         
-        if (!$produto_id){
+        if (! $produto_id){
             //cadastrando
 
             if ($this->core_model->get_by_id('produtos', array('produto_nome'=> $produto_nome))){
-                $this->form_validation->set_message('valida_nome_produto','Essa curso ja existe');
+                $this->form_validation->set_message('valida_nome_marca','Esse escola ja existe');
                 return false;
             }else{
                 return true;
@@ -148,7 +148,7 @@ class Produtos extends CI_Controller
             //Editando
 
             if ($this->core_model->get_by_id('produtos', array('produto_nome'=> $produto_nome, 'produto_id !=' => $produto_id))){
-                $this->form_validation->set_message('valida_nome_produto','Esse curso ja existe');
+                $this->form_validation->set_message('valida_nome_marca','Esse escola ja existe');
                 return false;
             }else{
                 return true;
@@ -159,7 +159,7 @@ class Produtos extends CI_Controller
     public function upload()
     {
 
-        $config['upload_path'] = './uploads/cursos';
+        $config['upload_path'] = './uploads/cursos/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = 2048;
         $config['max_width'] = 1000;
@@ -183,8 +183,8 @@ class Produtos extends CI_Controller
             //resize image configuração
 
             $config['image_library'] = 'gd2';
-            $config['source_image'] = './uploads/cursos' . $this->upload->data('file_name');
-            $config['new-image'] = './uploads/cursos/small' . $this->upload->data('file_name');
+            $config['source_image'] = './uploads/cursos/'.$this->upload->data('file_name');
+            $config['new-image'] = './uploads/cursos/small/'.$this->upload->data('file_name');
             $config['width'] = 300;
             $config['height'] = 300;
 
@@ -194,7 +194,7 @@ class Produtos extends CI_Controller
             //faz o resize
             //$this->image_lib->resize();
 
-            if (!$this->image_lib->resize()) {
+            if(!$this->image_lib->resize()) {
                 $data['erro'] = $this->image_lib->display_errors();
             }
         } else {

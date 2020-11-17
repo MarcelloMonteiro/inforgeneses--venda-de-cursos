@@ -69,33 +69,9 @@
 
               <div class="form-row">
 
-              <div class="form-group col-md-3">
-                  <label for="inputState">Categoria</label>
-                  <select id="inputState" name="produto_categoria_id" class="form-control">
-
-                    <option value="">Escolha...</option>
-
-                    <?php foreach ($categorias as $categoria) : ?>
-
-                      <?php if (isset($produto)) : ?>
-
-                        <option value="<?php echo $categoria->categoria_id; ?>" <?php echo ($categoria->categoria_id == $categoria->produto_categoria_id ? 'selected' : '') ?>>
-                          <?php echo $categoria->categoria_nome; ?></option>
-
-                      <?php else : ?>
-
-                        <option value="<?php echo $categoria->categoria_id; ?>"><?php echo $categoria->categoria_nome; ?></option>
-
-                      <?php endif; ?>
-
-                    <?php endforeach; ?>
-
-                  </select>
-                </div>
-
                 <div class="form-group col-md-3">
-                  <label for="inputState">Escola</label>
-                  <select id="inputState" name="produto_marca_id" class="form-control">
+                  <label for="">Escola</label>
+                  <select id="" name="produto_marca_id" class="form-control">
 
                     <option value="">Escolha...</option>
 
@@ -118,8 +94,8 @@
                 </div>
 
                 <div class="form-group col-md-3">
-                  <label for="inputState">Ativo</label>
-                  <select id="inputState" name="produto_ativo" class="form-control">
+                  <label for="">Ativo</label>
+                  <select id="" name="produto_ativo" class="form-control">
 
                     <?php if (isset($produto)) : ?>
 
@@ -136,8 +112,8 @@
                   </select>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="inputState">Produto em destaque</label>
-                  <select id="inputState" name="produto_destaque" class="form-control">
+                  <label for="">Produto em destaque</label>
+                  <select id="" name="produto_destaque" class="form-control">
 
                     <?php if (isset($produto)) : ?>
 
@@ -189,9 +165,9 @@
 
                   <?php if(isset($produto)):?>
 
-                    <div id="uploaded_data" class="text-danger">
+                    <div id="uploaded_image" class="text-danger">
                       
-                      <?php foreach ($fotos_produto as $foto): ?>
+                      <?php foreach ($fotos_produtos as $foto): ?>
 
                         <ul style="list-style: none; display: inline-block">
 
