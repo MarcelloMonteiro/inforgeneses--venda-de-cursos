@@ -47,10 +47,21 @@
                         </div>
 
                         <div class="single-add-to-cart">
+
+                        <?php 
+
+                            $atributos = array(
+                                'class' => 'cart-quantity'
+                            );
+                        ?>
+
+                        <?php echo form_open('carrinho', $atributos);?>
                             <form action="#" class="cart-quantity">
-                                <button class="add-to-cart" type="submit">Adicionar ao carrinho</button>
+                                <button class="add-to-cart btn-add-produto" data-id="<?php echo $produto->produto_id; ?>" type="button">Adicionar ao carrinho</button>
                             </form>
                         </div>
+
+                        <?php echo form_close(); ?>
 
                     </div>
                 </div>
