@@ -20,16 +20,19 @@ class Carrinho extends CI_Controller{
         $retorno = array();
 
         if(!$produto_id){
-            $retorno['erro'] = 3;
-            $retorno['mensagem'] = 'Informe a quantidade maior que zero';
-            echo json_encode($retorno);
-            exit();
+
+
         }else{
             if(!$produto = $this->core_model->get_by_id('produtos',array('produto_id' => $produto_id))){
 
                 $retorno['erro'] = 3;   
                 $retorno['mensagem'] = 'Não foi possivel encontrar o produto';
-                echo json_encode($retorno);
+
+            }else{
+                $this->carrinho_compra->insert($produto_id);
+                $retorno['erro'] = 0;   
+                $retorno['mensagem'] = 'Produto adicionado com sucesso';
+
             }
 
         }

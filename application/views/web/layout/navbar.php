@@ -39,28 +39,23 @@
                                         <!-- Setting Area End Here -->
                                         <!-- Begin Currency Area -->
                                         <li>
-                                            <span class="currency-selector-wrapper">Currency :</span>
-                                            <div class="ht-currency-trigger"><span>USD $</span></div>
+                                            <div class="ht-currency-trigger"><span>Entre ou registre-se</span></div>
                                             <div class="currency ht-currency">
                                                 <ul class="ht-setting-list">
-                                                    <li><a href="#">EUR €</a></li>
-                                                    <li class="active"><a href="#">USD $</a></li>
-                                                </ul>
+
+                                                <?php if(!$this->ion_auth->logged_in()):?>
+                                                    <li><a href="<?php echo base_url('login')?>">Entrar</a></li>
+
+                                                <?php else: ?>
+                                                    <li><a href="#">Perfil</a></li>
+                                                    <li><a href="#">Pedidos</a></li>
+                                                    <li class="active"><a href="<?php echo base_url('login/logout')?>">Logout</a></li>
+                                                <?php endif; ?>
+                                                    
+                                                 </ul>
                                             </div>
                                         </li>
-                                        <!-- Currency Area End Here -->
-                                        <!-- Begin Language Area -->
-                                        <li>
-                                            <span class="language-selector-wrapper">Language :</span>
-                                            <div class="ht-language-trigger"><span>English</span></div>
-                                            <div class="language ht-language">
-                                                <ul class="ht-setting-list">
-                                                    <li class="active"><a href="#"><img src="images/menu/flag-icon/1.jpg" alt="">English</a></li>
-                                                    <li><a href="#"><img src="images/menu/flag-icon/2.jpg" alt="">Français</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <!-- Language Area End Here -->
+                                        
                                     </ul>
                                 </div>
                             </div>

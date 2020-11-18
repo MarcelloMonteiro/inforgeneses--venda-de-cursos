@@ -10,43 +10,27 @@
                             <div class="slider-area">
                                 <div class="slider-active owl-carousel">
                                     <!-- Begin Single Slide Area -->
-                                    <div class="single-slide align-center-left  animation-style-01 bg-1">
+
+                                <?php foreach($produtos_destaques as $produto): ?>
+                                    <div class="single-slide align-center-left  animation-style-01" 
+                                    style="background-image: url('<?php echo base_url('uploads/cursos/'.$produto->foto_caminho);?>');
+                                        background-repeat: no-repeat;
+                                        background-position: center center;
+                                        background-size: cover;
+                                        min-height: 475px;
+                                        width: 100%;" >
                                         <div class="slider-progress"></div>
-                                        <div class="slider-content">
-                                            <h5>Sale Offer <span>-20% Off</span> This Week</h5>
-                                            <h2>Chamcham Galaxy S9 | S9+</h2>
-                                            <h3>Starting at <span>$1209.00</span></h3>
+                                        <div class="slider-content text-white">
+                                            <h5>Oferta da semana<span>-20% Desconto</span> apenas essa seman</h5>
+                                            <h2><?php echo $produto->produto_nome ?></h2>
+                                            <h3>Apartir de <span>R$ <?php echo $produto->produto_valor?></span></h3>
                                             <div class="default-btn slide-btn">
-                                                <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
+                                                <a class="links" href="<?php echo base_url('produto/'. $produto->produto_meta_link)?>">Vizualizar</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Single Slide Area End Here -->
-                                    <!-- Begin Single Slide Area -->
-                                    <div class="single-slide align-center-left animation-style-02 bg-2">
-                                        <div class="slider-progress"></div>
-                                        <div class="slider-content">
-                                            <h5>Sale Offer <span>Black Friday</span> This Week</h5>
-                                            <h2>Work Desk Surface Studio 2018</h2>
-                                            <h3>Starting at <span>$824.00</span></h3>
-                                            <div class="default-btn slide-btn">
-                                                <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Slide Area End Here -->
-                                    <!-- Begin Single Slide Area -->
-                                    <div class="single-slide align-center-left animation-style-01 bg-3">
-                                        <div class="slider-progress"></div>
-                                        <div class="slider-content">
-                                            <h5>Sale Offer <span>-10% Off</span> This Week</h5>
-                                            <h2>Phantom 4 Pro+ Obsidian</h2>
-                                            <h3>Starting at <span>$1849.00</span></h3>
-                                            <div class="default-btn slide-btn">
-                                                <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <?php endforeach; ?>
+
                                     <!-- Single Slide Area End Here -->
                                 </div>
                             </div>
